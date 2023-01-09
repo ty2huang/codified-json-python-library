@@ -1,4 +1,4 @@
-from codified_json import interface as cjson
+import codified_json as cjson
 import json
 
 # Copy/pasted from the "forecast example" at the bottom of this "weatherapi" website:

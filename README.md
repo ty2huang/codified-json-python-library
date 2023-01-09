@@ -7,7 +7,7 @@ This library transforms python objects into "codified JSON" and parses it back i
 
 ## Installation
 ```
-pip install git+
+pip install git+https://github.com/ty2huang/codified-json-python-library.git
 ```
 
 ## Getting started
