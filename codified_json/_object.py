@@ -64,7 +64,7 @@ def encode(obj):
             body = get_encoded_children(struct, lambda x: obj[x])
             node.content = {INDEX: structures.index_by_struct[struct], VALUE: body}
         else:
-            raise TypeError(f'Object of type {obj.__class__.__name__} cannot be encoded as codified JSON')
+            raise TypeError(f'Object of type {obj.__class__.__name__} cannot be encoded as codified-JSON')
         return node
 
     def cjson_obj_to_cjson_str(cjson_obj):

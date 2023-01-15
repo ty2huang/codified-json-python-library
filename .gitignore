@@ -1,6 +1,10 @@
 venv
 .travis.yml
 
+# Pipenv files
+Pipfile
+Pipfile.lock
+
 # Created by https://www.toptal.com/developers/gitignore/api/pythonvanilla,visualstudiocode
 # Edit at https://www.toptal.com/developers/gitignore?templates=pythonvanilla,visualstudiocode
 

@@ -15,7 +15,7 @@ setup(
     name='codified_json',
     packages=find_packages(include=['codified_json']),
     version='0.1.0',
-    description='Codified JSON - represent the same JSON data with less characters',
+    description='Codified-JSON - represent the same JSON data with less characters',
     long_description=long_description,
     long_description_content_type="text/markdown",
     author='Tim Huang',

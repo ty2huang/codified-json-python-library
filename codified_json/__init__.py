@@ -1,10 +1,10 @@
-"""The functions in this module encodes and decodes python objects into "codified json".
+"""The functions in this module encodes and decodes python objects into "codified-json".
 
 This module helps translate json-compatible python objects into a new json style that's less 
 verbose when it contains many python dictionaries with the same keys. This new json style is 
-known as "codified json". Reducing the size of json data can be useful for instance to avoid 
+known as "codified-json". Reducing the size of json data can be useful for instance to avoid 
 hitting payload limits when sending data across a network via REST APIs. The data encoded as 
-codified json can be stored as a string or a stream of compressed bytes.
+codified-json can be stored as a string or a stream of compressed bytes.
 
 The most common functions include:
 
@@ -15,7 +15,7 @@ parse_compressed_bytes(cjson_bytes)
 
 Example
 -------
-The code below demonstrates how to translate a python object "data" to and from codified json. 
+The code below demonstrates how to translate a python object "data" to and from codified-json. 
 
 As an example, "cjson_str" can be data sent from one system to another, and the receiving system
 will parse it back into a python object called "decoded_data". The data sent and the "decoded_data"
@@ -43,7 +43,7 @@ from codified_json._object import encode as cjson_encode, decode as cjson_decode
 
 
 def as_str(data):
-    """Translates json-compatible python data into codified json string.
+    """Translates json-compatible python data into codified-json string.
 
     Parameters
     ----------
@@ -53,13 +53,13 @@ def as_str(data):
     Returns
     -------
     str
-        Codified json as string.
+        Codified-json as string.
     """
     return cjson_encode(data)
 
 
 def as_compressed_bytes(data):
-    """Translates json-compatible python data into codified json bytes (compressed with GNU zip).
+    """Translates json-compatible python data into codified-json bytes (compressed with GNU zip).
 
     Parameters
     ----------
@@ -69,13 +69,13 @@ def as_compressed_bytes(data):
     Returns
     -------
     bytes
-        Codified json as bytes compressed with GNU zip.
+        Codified-json as bytes compressed with GNU zip.
     """
     return zlib.compress(as_str(data).encode())
 
 
 def write_to_io(data, io):
-    """Writes json-compatible python data as codified json string to io handler.
+    """Writes json-compatible python data as codified-json string to io handler.
 
     Parameters
     ----------
@@ -88,7 +88,7 @@ def write_to_io(data, io):
 
 
 def write_to_compressed_bytes_io(data, io):
-    """Writes json-compatible python data as codified json compressed bytes to io handler.
+    """Writes json-compatible python data as codified-json compressed bytes to io handler.
 
     Parameters
     ----------
@@ -101,7 +101,7 @@ def write_to_compressed_bytes_io(data, io):
 
 
 def write_to_file(data, filename):
-    """Writes json-compatible python data as codified json string to file.
+    """Writes json-compatible python data as codified-json string to file.
 
     Parameters
     ----------
@@ -115,7 +115,7 @@ def write_to_file(data, filename):
 
 
 def write_to_compressed_bytes_file(data, filename):
-    """Writes json-compatible python data as codified json compressed bytes to file.
+    """Writes json-compatible python data as codified-json compressed bytes to file.
 
     Parameters
     ----------
@@ -129,12 +129,12 @@ def write_to_compressed_bytes_file(data, filename):
 
 
 def parse_str(cjson_str):
-    """Translates codified json string back into python data.
+    """Translates codified-json string back into python data.
 
     Parameters
     ----------
     cjson_str : str
-        Codified json string.
+        Codified-json string.
 
     Returns
     -------
@@ -145,12 +145,12 @@ def parse_str(cjson_str):
 
 
 def parse_compressed_bytes(cjson_bytes):
-    """Translates codified json compressed bytes (decompressed with GNU zip) back into python data.
+    """Translates codified-json compressed bytes (decompressed with GNU zip) back into python data.
 
     Parameters
     ----------
     cjson_bytes : bytes
-        Codified json bytes compressed with GNU zip.
+        Codified-json bytes compressed with GNU zip.
 
     Returns
     -------
@@ -161,7 +161,7 @@ def parse_compressed_bytes(cjson_bytes):
 
 
 def read_from_io(io):
-    """Reads from io handler into json-compatible python data as codified json string.
+    """Reads from io handler into json-compatible python data as codified-json string.
     
     Parameters
     ----------
@@ -177,7 +177,7 @@ def read_from_io(io):
 
 
 def read_from_compressed_bytes_io(io):
-    """Reads from io handler into json-compatible python data as codified json compressed bytes.
+    """Reads from io handler into json-compatible python data as codified-json compressed bytes.
     
     Parameters
     ----------
@@ -193,7 +193,7 @@ def read_from_compressed_bytes_io(io):
 
 
 def read_from_file(filename):
-    """Reads from file into json-compatible python data as codified json string.
+    """Reads from file into json-compatible python data as codified-json string.
     
     Parameters
     ----------
@@ -210,7 +210,7 @@ def read_from_file(filename):
 
 
 def read_from_compressed_bytes_file(filename):
-    """Reads from file into json-compatible python data as codified json compressed bytes.
+    """Reads from file into json-compatible python data as codified-json compressed bytes.
     
     Parameters
     ----------

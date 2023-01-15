@@ -26,6 +26,6 @@ def test_read_from_file():
 
 
 def test_read_from_compressed_bytes_file():
-    filename_zip = filename + '.zip'
+    filename_zip = filename + '.gz'
     cjson.write_to_compressed_bytes_file(weather_data, filename_zip)
     assert cjson.read_from_compressed_bytes_file(filename_zip) == weather_data
