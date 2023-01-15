@@ -1,5 +1,6 @@
 venv
 .travis.yml
+tests/tmp/*
 
 # Pipenv files
 Pipfile

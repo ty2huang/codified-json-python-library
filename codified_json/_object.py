@@ -43,7 +43,7 @@ def decode(cjson_str):
     return decode_helper(cjson_str_to_cjson_obj(cjson_str))
 
 
-def encode(obj):
+def encode(obj, structures_as_array=False):
     structures = get_structures(obj)
 
     def get_encoded_children(children, transformer=lambda x: x):
@@ -67,7 +67,10 @@ def encode(obj):
             raise TypeError(f'Object of type {obj.__class__.__name__} cannot be encoded as codified-JSON')
         return node
 
-    def cjson_obj_to_cjson_str(cjson_obj):
-        return json.dumps({ STRUCTURES: cjson_obj.structures.to_json_obj(), BODY: cjson_obj.content }, separators=(',', ':'))
+    def cjson_obj_to_cjson_str(cjson_obj, structures_as_array):
+        json_value = cjson_obj.structures.to_json_array()
+        if not structures_as_array:
+            json_value = { str(idx):val for idx, val in enumerate(json_value) }
+        return json.dumps({ STRUCTURES: json_value, BODY: cjson_obj.content }, separators=(',', ':'))
 
-    return cjson_obj_to_cjson_str(encode_helper(obj))
+    return cjson_obj_to_cjson_str(encode_helper(obj), structures_as_array)

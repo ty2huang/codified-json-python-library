@@ -40,9 +40,10 @@ should be the same.
 
 import zlib
 from codified_json._object import encode as cjson_encode, decode as cjson_decode
+from codified_json import _utils
 
 
-def as_str(data):
+def as_str(data, structures_as_array=False):
     """Translates json-compatible python data into codified-json string.
 
     Parameters
@@ -55,10 +56,10 @@ def as_str(data):
     str
         Codified-json as string.
     """
-    return cjson_encode(data)
+    return cjson_encode(data, structures_as_array)
 
 
-def as_compressed_bytes(data):
+def as_compressed_bytes(data, structures_as_array=False):
     """Translates json-compatible python data into codified-json bytes (compressed with GNU zip).
 
     Parameters
@@ -71,10 +72,10 @@ def as_compressed_bytes(data):
     bytes
         Codified-json as bytes compressed with GNU zip.
     """
-    return zlib.compress(as_str(data).encode())
+    return zlib.compress(as_str(data, structures_as_array).encode())
 
 
-def write_to_io(data, io):
+def write_to_io(data, io, structures_as_array=False):
     """Writes json-compatible python data as codified-json string to io handler.
 
     Parameters
@@ -84,10 +85,10 @@ def write_to_io(data, io):
     io : io.TextIOBase
         IO handler to write to.
     """
-    io.write(as_str(data))
+    io.write(as_str(data, structures_as_array))
 
 
-def write_to_compressed_bytes_io(data, io):
+def write_to_compressed_bytes_io(data, io, structures_as_array=False):
     """Writes json-compatible python data as codified-json compressed bytes to io handler.
 
     Parameters
@@ -97,11 +98,13 @@ def write_to_compressed_bytes_io(data, io):
     io : io.BufferedIOBase
         IO handler to write to.
     """
-    io.write(as_compressed_bytes(data))
+    io.write(as_compressed_bytes(data, structures_as_array))
 
 
-def write_to_file(data, filename):
+def write_to_file(data, filename, structures_as_array=False):
     """Writes json-compatible python data as codified-json string to file.
+
+    Create folders if folders in the filepath do not exist.
 
     Parameters
     ----------
@@ -110,12 +113,15 @@ def write_to_file(data, filename):
     filename : str
         File path and name of file to write.
     """
+    _utils.create_file_path(filename)
     with open(filename, 'w') as f:
-        write_to_io(data, f)
+        write_to_io(data, f, structures_as_array)
 
 
-def write_to_compressed_bytes_file(data, filename):
+def write_to_compressed_bytes_file(data, filename, structures_as_array=False):
     """Writes json-compatible python data as codified-json compressed bytes to file.
+
+    Create folders if folders in the filepath do not exist.
 
     Parameters
     ----------
@@ -124,8 +130,9 @@ def write_to_compressed_bytes_file(data, filename):
     filename : str
         File path and name of binary file to write.
     """
+    _utils.create_file_path(filename)
     with open(filename, 'wb') as f:
-        write_to_compressed_bytes_io(data, f)
+        write_to_compressed_bytes_io(data, f, structures_as_array)
 
 
 def parse_str(cjson_str):

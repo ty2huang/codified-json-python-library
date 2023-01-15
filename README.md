@@ -1,10 +1,12 @@
 # Codified-JSON
 
-*Codified-JSON* is a new style of rewriting *JSON* for transfering payloads as smaller sizes between software applications.
+*Codified-JSON* is a new representation of *JSON* for transfering payloads as smaller sizes between software applications.
 
-When *JSON* data has many *JSON objects* with the same keys, it can often be rewritten (as *JSON*) into a more compact style such that the keys are only specified once. This style is what we call *Codified-JSON*.
+Please read the specifications for the *Codified-JSON* representation here: 
 
-This library transforms python objects into *Codified-JSON* and parses it back into python objects.
+https://ty2huang.github.io/codified-json/
+
+This library helps translate between python objects and the *Codified-JSON* representation (stored as string or compressed bytes).
 
 ## Installation
 
@@ -37,8 +39,7 @@ assert data == decoded_data
 
 ## Further Information
 
-If you print out `data` as JSON string vs *Codified-JSON* string, you'll find that the latter is
-indeed shorter.
+Following the example from the "Getting Started" section, if you print out `data` as JSON string vs *Codified-JSON* string, you'll find that the *Codified-JSON* representation is shorter.
 
 ```Python
 import json
@@ -54,14 +55,20 @@ def test():
 test()
 ```
 
-Result is below. Size difference gets bigger as the JSON array size increases.
+Output is printed below. Size difference gets bigger as the JSON array size increases.
 
-```
+```json
 As JSON (length 193):
 [{"apple": "a", "clementine": 4, "banana": "e"}, {"clementine": 4, "banana": 5, "apple": 34}, {"banana": 4.5, "apple": false, "clementine": 4}, {"clementine": 4, "apple": null, "banana": true}]
 
-As Codified-JSON (length 142):
-{"s":[["apple","banana","clementine"]],"b":[{"i":0,"v":["a","e",4]},{"i":0,"v":[34,5,4]},{"i":0,"v":[false,4.5,4]},{"i":0,"v":[null,true,4]}]}
+As Codified-JSON (length 146):
+{"s":{"0":["apple","banana","clementine"]},"b":[{"i":0,"v":["a","e",4]},{"i":0,"v":[34,5,4]},{"i":0,"v":[false,4.5,4]},{"i":0,"v":[null,true,4]}]}
+```
+
+## Tests
+
+```
+python setup.py pytest
 ```
 
 ## License

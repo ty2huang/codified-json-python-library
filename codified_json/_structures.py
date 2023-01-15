@@ -1,8 +1,10 @@
 class CJsonStructures:
-    def __init__(self, json_obj = []):
+    def __init__(self, json_value = []):
         self.index_by_struct = {}
         self.structs_by_index = []
-        for struct in json_obj:
+        if type(json_value) == dict:
+            json_value = [x[1] for x in sorted((int(k), v) for k, v in json_value.items())]
+        for struct in json_value:
             self.add_struct(tuple(struct))
 
     def make_struct_from_dict(self, dict_obj):
@@ -25,7 +27,7 @@ class CJsonStructures:
         struct = self.structs_by_index[id]
         return struct
     
-    def to_json_obj(self):
+    def to_json_array(self):
         return self.structs_by_index
 
 
