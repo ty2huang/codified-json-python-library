@@ -1,0 +1,14 @@
+language: python
+python:
+  - 3.7
+
+script:
+  - python setup.py pytest
+
+deploy:
+  provider: pypi
+  username: "__token__"
+  password: "$PYPI_TOKEN"
+  on:
+    tags: true
+    condition: $TRAVIS_BRANCH =~ ^v[0-9].*$
