@@ -7,11 +7,11 @@ json_file = 'tests/weather_forecast.json'
 with open(json_file, 'r') as f:
     weather_data = json.load(f)
 
-filename = 'tests/weather_forecast_structs_array.codf.json'
+filename = 'tests/weather_forecast_structs_array.cdf.json'
 with open(filename, 'r') as f:
     cjson_str = f.read()
 
-filename2 = 'tests/weather_forecast.codf.json'
+filename2 = 'tests/weather_forecast.cdf.json'
 with open(filename2, 'r') as f:
     cjson_str2 = f.read()
 
